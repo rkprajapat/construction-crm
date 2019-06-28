@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'crispy_forms',
     'debug_toolbar',
+    'phonenumber_field',
 
     # Local
     'users',
