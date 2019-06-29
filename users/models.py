@@ -4,20 +4,6 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
 class Role(models.Model):
-    '''
-    The Role entries are managed by the system,
-    automatically created via a Django data migration.
-    '''
-    ROLE_CHOICES = (
-        (1, 'CUSTOMER'),
-        (2, 'CRM'),
-        (3, 'DESIGN'),
-        (4, 'CONSTRUCTION'),
-        (5, 'ADMIN'),
-    )
-
-    #   id = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, primary_key=True,)
-    #   id = models.PositiveSmallIntegerField(primary_key=True,)
     role = models.CharField(max_length=254, blank=False)
     description = models.CharField(max_length=1024, blank=True)
 

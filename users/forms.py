@@ -6,10 +6,10 @@ from django.db.models.query import QuerySet
 
 
 class CustomUserCreationForm(UserCreationForm):
-    roles = forms.MultipleChoiceField(
-        required=False,
+    roles = forms.ModelMultipleChoiceField(
+        required=True,
         widget=forms.CheckboxSelectMultiple,
-        choices=Role.ROLE_CHOICES,
+        queryset=Role.objects.all()
     )
 
     class Meta(UserCreationForm.Meta):
@@ -21,8 +21,7 @@ class CustomUserChangeForm(UserChangeForm):
     roles = forms.ModelMultipleChoiceField(
         required=True,
         widget=forms.CheckboxSelectMultiple,
-        # widget=forms.SelectMultiple,
-        queryset=Role.objects.all() #.values('pk','role') #Role.get_roles(),
+        queryset=Role.objects.all()
     )
 
     class Meta:
