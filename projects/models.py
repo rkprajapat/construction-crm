@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django_countries.fields import CountryField
 
 class Project(models.Model):
@@ -11,22 +12,34 @@ class Project(models.Model):
     country = CountryField()
     image = models.ImageField(blank=True)
 
+    def get_absolute_url(self):
+        return reverse('project_details', args=[str(self.id)])
+
     def __str__(self):
         return self.name
 
 
 class Tower(models.Model):
-    name = models.CharField(max_length=20, blank=False)
+    name = models.CharField(max_length=20, blank=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
     def __str__(self):
-        return ' '.join([self.project.name, '-', self.name])
+        if self.name:
+            return ' '.join([self.project.name, '-', self.name])
+        else:
+            return self.project.name
 
 
 class Unit(models.Model):
     unit = models.PositiveSmallIntegerField(blank=False)
     project_tower = models.ForeignKey(Tower, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, blank=False)
+
+    class Meta:
+        ordering = ['project_tower', 'unit']
+
+    def get_absolute_url(self):
+        return reverse('unit_details', args=[str(self.id)])
 
     def __str__(self):
         return ' '.join([self.project_tower.project.name, self.project_tower.name, str(self.unit)])
