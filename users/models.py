@@ -3,6 +3,7 @@ from django.db import models
 
 from phonenumber_field.modelfields import PhoneNumberField
 
+
 class Role(models.Model):
     role = models.CharField(max_length=254, blank=False)
     description = models.CharField(max_length=1024, blank=True)
@@ -11,9 +12,9 @@ class Role(models.Model):
         return self.role
 
 
-
-
 class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=20, null=True)
     full_name = models.CharField(verbose_name='Full Name', max_length=254, blank=False)
     address = models.CharField(max_length=2048, default=None, blank=True, null=True)
     roles = models.ManyToManyField(Role, blank=False, default=1)
@@ -22,3 +23,4 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+
