@@ -1,10 +1,14 @@
 from django.db import models
 from django.urls import reverse
 from django_countries.fields import CountryField
+from django.utils.text import slugify
+
+from mdm.models import ProjectStatus, UnitStatus
 
 class Project(models.Model):
     name = models.CharField(max_length=100, blank=False)
-    status = models.CharField(max_length=50, blank=False)
+    slug = models.SlugField(unique=True)
+    status = models.ForeignKey(ProjectStatus, blank=False, null=True, on_delete=models.SET_NULL)
     address1 = models.CharField('Address Line 1', max_length=254, blank=False)
     address2 = models.CharField('Address Line 2', max_length=254, blank=True)
     city = models.CharField(max_length=50, blank=False)
@@ -12,8 +16,12 @@ class Project(models.Model):
     country = CountryField()
     image = models.ImageField(blank=True)
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Project, self).save(*args, **kwargs)
+
     def get_absolute_url(self):
-        return reverse('project_details', args=[str(self.id)])
+        return reverse('project_details', args=[str(self.slug)])
 
     def __str__(self):
         return self.name
@@ -33,13 +41,18 @@ class Tower(models.Model):
 class Unit(models.Model):
     unit = models.PositiveSmallIntegerField(blank=False)
     project_tower = models.ForeignKey(Tower, on_delete=models.CASCADE)
-    status = models.CharField(max_length=20, blank=False)
+    status = models.ForeignKey(UnitStatus, blank=False, null=True, on_delete=models.SET_NULL)
+    slug = models.SlugField(unique=True)
 
     class Meta:
         ordering = ['project_tower', 'unit']
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify('-'.join([self.project_tower.project.name, self.project_tower.name, str(self.unit)]))
+        super(Unit, self).save(*args, **kwargs)
+
     def get_absolute_url(self):
-        return reverse('unit_details', args=[str(self.id)])
+        return reverse('unit_details', args=[str(self.slug)])
 
     def __str__(self):
         return ' '.join([self.project_tower.project.name, self.project_tower.name, str(self.unit)])
