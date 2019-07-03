@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 
 urlpatterns = [
@@ -8,6 +8,7 @@ urlpatterns = [
     path('users/', include('django.contrib.auth.urls')),
     path('accounts/', include('allauth.urls')),
     path('projects/', include('projects.urls')),
+    re_path('^searchableselect/', include('searchableselect.urls')),
     path('', include('pages.urls')),
 ]
 

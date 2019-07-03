@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'debug_toolbar',
     'phonenumber_field',
+    'searchableselect',
 
     # Local
     'users',

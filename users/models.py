@@ -20,7 +20,7 @@ class CustomUser(AbstractUser):
     username = models.CharField(max_length=20, null=True)
     full_name = models.CharField(verbose_name='Full Name', max_length=254, blank=False)
     address = models.CharField(max_length=2048, default=None, blank=True, null=True)
-    roles = models.ManyToManyField(Role, blank=False, default=1)
+    roles = models.ManyToManyField(Role, blank=True)
     primary_phone_number = PhoneNumberField(verbose_name='Primary Phone', blank=False, help_text='Enter valid phone number with country/area code')
     secondary_phone_number = PhoneNumberField(verbose_name='Secondary Phone', blank=True, null=True, help_text='Enter valid phone number with country/area code')
     
@@ -35,5 +35,5 @@ class CustomUser(AbstractUser):
         return reverse("users:account", kwargs={"slug": self.slug})
     
     def __str__(self):
-        return self.full_name
+        return "{0} <{1}>".format(self.full_name, self.email.lower())
 

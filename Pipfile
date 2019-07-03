@@ -13,6 +13,7 @@ django-debug-toolbar = "==1.11"
 phonenumber-field = "*"
 pillow = "*"
 django-phonenumber-field = "*"
+django-searchable-select = "*"
 
 [requires]
 python_version = "3.7"

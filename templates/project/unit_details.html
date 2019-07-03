@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+{% load static %}
+
+<!-- {% block title %}{% endblock title %} -->
+
+{% block content %}
+<h1>{{ unit| upper }}</h1>
+
+<section>{{ unit.address}}</section>
+<section>Status: {{unit.status}}</section>
+<section>Project Link: 
+    <a href="/projects/{{unit.project_tower.project.slug}}">{{unit.project_tower.project}}</a>
+</section>
+
+<section>
+    <ul>
+        {% for owner in unit.owner.all %}
+            <li>
+                    <a href="/users/{{owner.id}}">{{ owner }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock content %}
