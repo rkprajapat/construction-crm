@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+{% load static %}
+
+<!-- {% block title %}{% endblock title %} -->
+
+{% block content %}
+<h1>{{ project.name | upper }}</h1>
+
+<section>{{project.status}}</section>
+<section>{{ project.address1}}</section>
+<section>{{ project.address2}}</section>
+<section>{{ project.city}}</section>
+<section>{{ project.zip_code}}</section>
+<section>{{ project.country}}</section>
+
+{% endblock content %}
