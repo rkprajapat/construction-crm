@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'phonenumber_field',
     'searchableselect',
+    'captcha',
 
     # Local
     'users',
@@ -172,6 +173,12 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_FORMS = {'login': 'users.forms.MyCustomLoginForm'}
 
 # silences warnings
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
+
+# ReCaptcha settings
+RECAPTCHA_PUBLIC_KEY = '6Lfdj6wUAAAAAEKniubpr3wIaFqS5UV6-3zPwyWC'
+RECAPTCHA_PRIVATE_KEY = '6Lfdj6wUAAAAAFYRNHQVJYNi2lahvxPnvXMHGcDq'
+RECAPTCHA_USE_SSL = False

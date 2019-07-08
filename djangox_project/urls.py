@@ -9,7 +9,7 @@ urlpatterns = [
     path('users/', include('django.contrib.auth.urls')),
     path('accounts/', include('allauth.urls')),
     path('projects/', include('projects.urls')),
-    re_path('^searchableselect/', include('searchableselect.urls')),
+    re_path(r'^searchableselect/', include('searchableselect.urls')),
     path('', include('pages.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

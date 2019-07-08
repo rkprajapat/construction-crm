@@ -1,8 +1,12 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Role
 from django.contrib.auth.admin import UserAdmin
 from django.db.models.query import QuerySet
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Invisible
+from allauth.account.forms import LoginForm
+
+from .models import CustomUser, Role
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -27,3 +31,10 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = ('email', 'username')
+
+
+class MyCustomLoginForm(LoginForm):
+    captcha = ReCaptchaField()
+
+    def login(self, *args, **kwargs):
+        return super(MyCustomLoginForm, self).login(*args, **kwargs)
