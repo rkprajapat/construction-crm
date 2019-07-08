@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'pages',
     'projects',
     'mdm',
+    'demands',
 ]
 
 MIDDLEWARE = [
