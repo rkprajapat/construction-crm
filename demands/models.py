@@ -13,8 +13,8 @@ class Demand(models.Model):
     status = models.CharField(max_length=20, choices=status_choices, blank=False)
     description = models.CharField(max_length=2000, blank=False)
     demand_date = models.DateField(verbose_name="Demand Date", auto_now_add=True)
-    demand_letter = models.FileField(verbose_name="Demand Letter", upload_to='uploads/%Y/%m/%d/', blank=False)
-    receipt = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True)
+    demand_letter = models.FileField(verbose_name="Demand Letter", blank=False)
+    receipt = models.FileField(blank=True)
 
     @property
     def open_duration(self):

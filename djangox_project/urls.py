@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -10,7 +11,7 @@ urlpatterns = [
     path('projects/', include('projects.urls')),
     re_path('^searchableselect/', include('searchableselect.urls')),
     path('', include('pages.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar

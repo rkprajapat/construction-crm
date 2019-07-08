@@ -15,7 +15,7 @@ class Project(models.Model):
     city = models.CharField(max_length=50, blank=False)
     zip_code = models.PositiveSmallIntegerField('ZIP/Postal Code')
     country = CountryField()
-    image = models.ImageField(blank=True, upload_to='uploads/%Y/%m/%d/')
+    image = models.ImageField(blank=True, )
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
