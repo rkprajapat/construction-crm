@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'mdm',
     'demands',
     'libraries',
+    'pdi'
 ]
 
 MIDDLEWARE = [
