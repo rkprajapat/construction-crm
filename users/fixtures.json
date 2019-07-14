@@ -1,0 +1,41 @@
+[{
+        "model": "users.role",
+        "pk": 1,
+        "fields": {
+            "role": "Customer",
+            "description": ""
+        }
+    },
+    {
+        "model": "users.role",
+        "pk": 2,
+        "fields": {
+            "role": "Project Admin",
+            "description": "Admin to manage a specific project"
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$z3j7YGYh9KVr$QnNFIMmXT0tPSNzhRnlL8MdTS3QqTGHHUKABMMfvddw=",
+            "last_login": "2019-07-14T16:40:25.815Z",
+            "is_superuser": true,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2019-07-09T10:22:56.415Z",
+            "email": "admin@admin.com",
+            "slug": "adminadmincom",
+            "username": "admin",
+            "full_name": "",
+            "address": null,
+            "primary_phone_number": "",
+            "secondary_phone_number": null,
+            "groups": [],
+            "user_permissions": [],
+            "roles": []
+        }
+    }
+]

@@ -33,6 +33,14 @@ class CustomUser(AbstractUser):
 
     def get_absolute_url(self):
         return reverse("users:account", kwargs={"slug": self.slug})
+
+    @property
+    def is_customer(self):
+        return self.roles.filter(role='Customer').exists()
+
+    @property
+    def is_project_admin(self):
+        return self.roles.filter(role='Project Admin').exists()
     
     def __str__(self):
         return "{0} <{1}>".format(self.full_name, self.email.lower())

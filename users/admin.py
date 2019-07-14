@@ -13,7 +13,7 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     search_fields = ('email', 'full_name')
     ordering = ('email',)
-    list_display = ['full_name', 'email', 'primary_phone_number']
+    list_display = ['pk', 'full_name', 'email', 'primary_phone_number']
     add_fieldsets = (
         (None, {
             'fields': ('email', 'password1', 'password2', 'roles')}
