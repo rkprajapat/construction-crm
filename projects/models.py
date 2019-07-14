@@ -49,7 +49,7 @@ class Unit(models.Model):
     project_tower = models.ForeignKey(Tower, on_delete=models.CASCADE)
     status = models.ForeignKey(UnitStatus, blank=False, null=True, on_delete=models.SET_NULL)
     slug = models.SlugField(unique=True)
-    owner = models.ManyToManyField(CustomUser, blank=True)
+    owner = models.ManyToManyField(CustomUser, blank=True, related_name="owned_unit")
 
     class Meta:
         ordering = ['project_tower', 'unit']
