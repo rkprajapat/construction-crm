@@ -8,7 +8,7 @@ class LibraryAdmin(admin.ModelAdmin):
 
 class DocumentAdmin(admin.ModelAdmin):
     form = DocumentForm
-    list_display = ['title', 'library', 'documents']
+    list_display = ['title', 'library', 'file']
 
 admin.site.register(Library, LibraryAdmin)
 admin.site.register(Document, DocumentAdmin)

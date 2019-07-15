@@ -36,13 +36,14 @@
   <div class="card-header">Owners</div>
     <ul class="list-group list-group-flush">
         {% for owner in unit.owner.all %}
-            <li class="list-group-item">{{owner}}</li>
+            <li class="list-group-item">{{owner.full_name}}</li>
         {% endfor %}
     </ul>
 </div>
 {% comment %} owners list ends {% endcomment %}
 
 {% comment %} unit demand section {% endcomment %}
+{% if unit.demand.all.count > 0  %}
 <div class="card border-secondary mb-3">
     <div class="card-header">Demand & Receipt</div>
     <table class="table table-responsive-md table-hover">
@@ -74,8 +75,40 @@
                 </td>
             </tr>
             {% endfor %}
+        </tbody>
     </table>
 </div>
+{% endif %}
 {% comment %} unit demand section ends {% endcomment %}
+
+{% comment %} unit and project docs {% endcomment %}
+{% if docs.count > 0  %}
+<div class="card border-secondary mb-3">
+    <div class="card-header">Documents</div>
+    <table class="table table-responsive-md table-hover">
+        <thead>
+            <th>Library</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>File</th>
+        </thead>
+        <tbody>      
+    {% for doc in docs %}
+            <tr>
+                <td>{{doc.library}}</td>
+                <td>{{doc.title}}</td>
+                <td>{{doc.description}}</td>
+                <td>
+                    <a href="{{doc.file.url}}">
+                        <img src="{% static 'images/icons/download.svg' %}" alt="Download" class="btn icon-btn" />
+                    </a>
+                </td>
+            </tr>
+        </tbody
+    {% endfor %}
+    </table>
+</div>
+{% endif %}
+{% comment %} unit and project docs end {% endcomment %}
 
 {% endblock content %}
