@@ -5,21 +5,77 @@
 
 {% block content %}
 <h1>{{ unit| upper }}</h1>
+<section>Status: <span class="badge badge-primary">{{unit.status}}</span></section>
+<br />
 
-<section>{{ unit.address}}</section>
-<section>Status: {{unit.status}}</section>
-<section>Project Link: 
-    <a href="/projects/{{unit.project_tower.project.slug}}">{{unit.project_tower.project}}</a>
-</section>
+{% comment %} Project Details {% endcomment %}
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{unit.project.image.url}}" class="card-img" alt="{{unit.project}}">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">
+            <a href="{% url 'project_details' unit.project.slug %}">
+                {{unit.project}}
+            </a>
+        </h5>
+        <p class="card-text">
+            <span>{{unit.address}}</span><br />
+            <span>Status: <span class="badge badge-primary">{{unit.project.status}}</span></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% comment %} Project details ends {% endcomment %}
 
-<section>
-    <ul>
+{% comment %} list owners {% endcomment %}
+<div class="card border-secondary mb-3">
+  <div class="card-header">Owners</div>
+    <ul class="list-group list-group-flush">
         {% for owner in unit.owner.all %}
-            <li>
-                    <a href="/users/{{owner.id}}">{{ owner }}</a>
-            </li>
+            <li class="list-group-item">{{owner}}</li>
         {% endfor %}
     </ul>
-</section>
+</div>
+{% comment %} owners list ends {% endcomment %}
+
+{% comment %} unit demand section {% endcomment %}
+<div class="card border-secondary mb-3">
+    <div class="card-header">Demand & Receipt</div>
+    <table class="table table-responsive-md table-hover">
+        <thead>
+            <tr>
+            <th scope="col-2">Demand Date</th>
+            <th scope="col-1">Status</th>
+            <th scope="col-5">Description</th>
+            <th scope="col-2">Demand Letter</th>
+            <th scope="col-2">Receipt</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for demand in unit.demand.all|dictsort:"demand_date" %}
+            <tr>
+                <td>{{demand.demand_date}}</td>
+                <td>{{demand.status}}</td>
+                <td>{{demand.description}}</td>
+                <td><a href="{{demand.demand_letter.url}}">
+                        <img src="{% static 'images/icons/download.svg' %}" alt="Download" class="btn icon-btn" />
+                    </a>
+                </td>
+                <td>
+                    {% if demand.receipt %}
+                    <a href="{{demand.receipt.url}}">
+                        <img src="{% static 'images/icons/download.svg' %}" alt="Download" class="btn icon-btn" />
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+    </table>
+</div>
+{% comment %} unit demand section ends {% endcomment %}
 
 {% endblock content %}

@@ -9,7 +9,7 @@ status_choices = [
 ]
 
 class Demand(models.Model):
-    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False)
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='demand')
     status = models.CharField(max_length=20, choices=status_choices, blank=False)
     description = models.CharField(max_length=2000, blank=False)
     demand_date = models.DateField(verbose_name="Demand Date", auto_now_add=True)

@@ -65,5 +65,9 @@ class Unit(models.Model):
     def address(self):
         return self.project_tower.project.address
 
+    @property
+    def project(self):
+        return self.project_tower.project
+
     def __str__(self):
         return ' '.join([self.project_tower.project.name, self.project_tower.name, str(self.unit)])
