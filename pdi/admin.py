@@ -8,7 +8,7 @@ class PDICategoryAdmin(admin.ModelAdmin):
 
 class SNAGAdmin(admin.ModelAdmin):
     form = SNAGForm
-    list_display = ['snag_no', 'visit_datetime', 'category', 'status', 'acknowledgement']
+    list_display = ['snag_no', 'snag_datetime', 'category', 'status', 'acknowledgement']
 
     class Meta:
         model = SNAG
