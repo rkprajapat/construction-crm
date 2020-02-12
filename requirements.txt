@@ -1,8 +1,8 @@
-Babel==2.7.0
+-i https://pypi.org/simple/
+babel==2.7.0
 certifi==2019.6.16
 chardet==3.0.4
 defusedxml==0.6.0
-Django==2.2.3
 django-allauth==0.39.1
 django-countries==5.3.3
 django-crispy-forms==1.7.2
@@ -11,16 +11,17 @@ django-phonenumber-field==3.0.1
 django-ranged-response==0.2.0
 django-recaptcha==2.0.4
 django-searchable-select==1.5.0
-Faker==1.0.7
+django==2.2.10
+faker==1.0.7
 idna==2.8
 oauthlib==3.0.1
 phonenumbers==8.10.14
-Pillow==6.0.0
+pillow==6.0.0
 python-dateutil==2.8.0
 python3-openid==3.1.0
 pytz==2019.1
-requests==2.22.0
 requests-oauthlib==1.2.0
+requests==2.22.0
 six==1.12.0
 sqlparse==0.3.0
 text-unidecode==1.2
